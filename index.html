@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ethan Code Classroom</title><link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+ <a class="brand" href="#"><span class="logo">EC</span><span><b>ETHAN CODE</b><small>Powered by Ethan Digital Academy</small></span></a>
+ <nav><a href="#classroom">My Classroom</a><a href="#courses">Courses</a><a href="#practice">Practice</a><a href="#projects">Projects</a></nav>
+ <button class="pill" id="progressBtn">My Progress</button>
+</header>
+
+<main>
+<section class="hero">
+ <div><span class="tag">CODING MADE SIMPLE</span><h1>Learn coding one small step at a time.</h1>
+ <p>You do not need to be a programmer already. Ethan Code explains each idea in simple words, shows you an example, and then helps you try it yourself.</p>
+ <div class="heroactions"><button class="primary" id="startBtn">Start My First Lesson</button><a class="secondary" href="#courses">See My Courses</a></div>
+ <div class="promise"><span>✓ Simple explanations</span><span>✓ Guided practice</span><span>✓ Quick quizzes</span><span>✓ Fun projects</span></div></div>
+ <div class="hero-card"><span class="bubble">TODAY'S MISSION</span><div class="bigicon">💻</div><h3>Build your first web page</h3><p>Learn what a website is and make a page say hello.</p><button class="primary" id="missionBtn">Begin Mission</button></div>
+</section>
+
+<section class="section" id="classroom">
+ <div class="heading"><div><span class="tag">MY CLASSROOM</span><h2>What would you like to learn?</h2><p>Start with the easy lessons. New ideas become available as you grow.</p></div></div>
+ <div class="levels">
+  <article><span class="levelno">1</span><div><b>STARTER</b><h3>Meet Coding</h3><p>Understand websites, instructions and simple HTML.</p></div></article>
+  <article><span class="levelno">2</span><div><b>EXPLORER</b><h3>Make It Look Good</h3><p>Learn colours, spacing and page layouts with CSS.</p></div></article>
+  <article><span class="levelno">3</span><div><b>BUILDER</b><h3>Make It Work</h3><p>Use JavaScript and Python ideas to make things happen.</p></div></article>
+  <article><span class="levelno">4</span><div><b>CREATOR</b><h3>Build Real Projects</h3><p>Plan, create, test and proudly present your own work.</p></div></article>
+ </div>
+</section>
+
+<section class="section soft" id="courses">
+ <span class="tag">LEARNING PATH</span><h2>Your coding courses</h2><p class="lead">Course names are simple first. The real technical words are introduced inside the lessons when you are ready.</p>
+ <div class="coursegrid" id="courseGrid"></div>
+</section>
+
+<section class="section lesson hidden" id="lesson">
+ <button class="back" id="closeLesson">← Back to courses</button>
+ <div class="lessonhead"><span class="tag" id="lessonCourse"></span><span class="lessoncount" id="lessonCount"></span><h2 id="lessonTitle"></h2><p id="lessonIntro"></p></div>
+ <div class="lessonsteps">
+  <article><span class="step">1</span><div><h3>What are we learning?</h3><p id="learnWhat"></p></div></article>
+  <article><span class="step">2</span><div><h3>Simple meaning</h3><p id="simpleMeaning"></p></div></article>
+  <article><span class="step">3</span><div><h3>Think about it like this</h3><div class="story" id="everydayExample"></div></div></article>
+  <article><span class="step">4</span><div><h3>Let me show you</h3><div class="showme" id="showMe"></div></div></article>
+  <article><span class="step">5</span><div><h3>Try it with me</h3><p id="tryWithMe"></p><button class="practicebtn" id="openPractice">Open Practice Box</button></div></article>
+  <article><span class="step">6</span><div><h3>Your turn</h3><p id="yourTurn"></p></div></article>
+ </div>
+ <div class="quickcheck"><span class="tag">QUICK QUESTION</span><h3 id="checkQuestion"></h3><div id="checkOptions"></div><p id="checkFeedback"></p></div>
+ <div class="lessonend"><div><b>⭐ What did we learn?</b><p id="lessonSummary"></p></div><button class="primary" id="completeLesson">I Understand — Finish Lesson</button></div>
+</section>
+
+<section class="section practice" id="practice">
+ <span class="tag">PRACTICE CORNER</span><h2>Try your code here</h2><p class="lead">This box is only for practice. Follow the lesson, change one thing at a time, then press <b>Show My Page</b>.</p>
+ <div class="practicebox"><div class="practicehelp"><b id="practiceTitle">My First Web Page</b><p id="practiceHelp">Type a heading and a short message. Mistakes are part of learning.</p></div>
+ <div class="editors"><label>My HTML<textarea id="htmlCode"></textarea></label><label>My CSS<textarea id="cssCode"></textarea></label><label>My JavaScript<textarea id="jsCode"></textarea></label></div>
+ <div class="practiceactions"><button class="secondary" id="resetCode">Start Again</button><button class="primary" id="runCode">Show My Page</button></div>
+ <iframe id="preview" title="My practice result" sandbox="allow-scripts"></iframe></div>
+</section>
+
+<section class="section soft" id="projects">
+ <span class="tag">MY PROJECTS</span><h2>Make something you can be proud of</h2><div class="projectgrid">
+ <article><div>🌟</div><h3>All About Me Page</h3><p>Create a friendly webpage about an imaginary character, hobby or school club.</p><span>Starter Project</span></article>
+ <article><div>🎨</div><h3>Colourful Learning Card</h3><p>Use CSS to turn plain information into a neat learning card.</p><span>Explorer Project</span></article>
+ <article><div>🔢</div><h3>Study Counter</h3><p>Make buttons change a number and learn how a webpage can react.</p><span>Builder Project</span></article>
+ <article><div>🏆</div><h3>My Big Project</h3><p>Choose a useful idea, plan it, build it in small steps, test it and explain what you learned.</p><span>Creator Project</span></article>
+ </div>
+</section>
+</main>
+
+<div class="modal hidden" id="progressModal"><div class="modalbox"><button class="x" id="closeProgress">×</button><span class="tag">MY PROGRESS</span><h2>Look how far you have come!</h2><div class="progressline"><i id="progressBar"></i></div><p id="progressText"></p><div id="badges" class="badges"></div></div></div>
+<footer><b>ETHAN CODE</b><span>Learn • Try • Build • Grow</span><small>Powered by Ethan Digital Academy</small></footer>
+<script src="assets/app.js"></script></body></html>
