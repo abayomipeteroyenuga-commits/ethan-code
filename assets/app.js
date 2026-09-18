@@ -1,4 +1,10 @@
 const $=s=>document.querySelector(s);
+// v7.3: explicit DOM bindings. Do not rely on browser-created globals from element IDs.
+const byId=id=>document.getElementById(id);
+const ids=["courseGrid","lessonCourse","lessonCount","lessonTitle","lessonIntro","learnWhat","simpleMeaning","everydayExample","showMe","tryWithMe","yourTurn","checkQuestion","checkFeedback","checkOptions","lessonSummary","lesson","closeLesson","startBtn","missionBtn","openPractice","completeLesson","htmlCode","cssCode","jsCode","preview","runCode","resetCode","progressBar","progressText","badges","progressModal","progressBtn","closeProgress","missionGrid","pathNote","gridWorld","blockList","puzzleMessage","runPuzzle","shufflePuzzle","hintPuzzle","hintText","choiceBox","explainAgain","showHint","helpText","starCount","menuBtn","mainNav","continueBtn","continueProgress","resetProgress"];
+const el={}; ids.forEach(id=>el[id]=byId(id));
+const {courseGrid,lessonCourse,lessonCount,lessonTitle,lessonIntro,learnWhat,simpleMeaning,everydayExample,showMe,tryWithMe,yourTurn,checkQuestion,checkFeedback,checkOptions,lessonSummary,lesson,closeLesson,startBtn,missionBtn,openPractice,completeLesson,htmlCode,cssCode,jsCode,preview,runCode,resetCode,progressBar,progressText,badges,progressModal,progressBtn,closeProgress,missionGrid,pathNote,gridWorld,blockList,puzzleMessage,runPuzzle,shufflePuzzle,hintPuzzle,hintText,choiceBox,explainAgain,showHint,helpText,starCount,menuBtn,mainNav,continueBtn,continueProgress,resetProgress}=el;
+
 const courses=[
 {icon:"🌐",stage:"STARTER",name:"Meet Websites",tech:"Web Foundations",desc:"Learn what websites are and how pages are put together.",lessons:[
 ["What Is a Website?","A website is a group of pages you can visit using a browser.","Think of a website like a digital book. It can have many pages, and links help you move from one page to another.","A school may have a building with different rooms. A website can have a home page, learning page and contact page. Each page has a job.","Browser → asks for a page\nWebsite → sends the page\nBrowser → shows it to you","Open the practice box and make a page say: Welcome to My Website.","Change the message and add one sentence about what your imaginary website teaches.","Which program do we commonly use to view a website?",["A web browser","A calculator","A camera"],0,"A website contains pages that a browser can display."],
@@ -43,15 +49,86 @@ const courses=[
 ];
 
 let current={c:0,l:0};
-const state=()=>JSON.parse(localStorage.getItem("ethanKidsCode")||'{"done":[]}');
-const save=s=>localStorage.setItem("ethanKidsCode",JSON.stringify(s));
-function renderCourses(){courseGrid.innerHTML=courses.map((c,i)=>`<article data-i="${i}"><div class="courseicon">${c.icon}</div><b>${c.stage}</b><h3>${c.name}</h3><p>${c.desc}</p><span class="go">${c.lessons.length} lessons • Start learning →</span></article>`).join("");document.querySelectorAll("#courseGrid article").forEach(x=>x.onclick=()=>openLesson(+x.dataset.i,0))}
-function openLesson(ci,li){current={c:ci,l:li};let c=courses[ci],d=c.lessons[li];lessonCourse.textContent=c.name+" • "+c.tech;lessonCount.textContent=`Lesson ${li+1} of ${c.lessons.length}`;lessonTitle.textContent=d[0];lessonIntro.textContent=d[1];learnWhat.textContent=d[1];simpleMeaning.textContent=d[2];everydayExample.textContent=d[3];showMe.textContent=d[4];tryWithMe.textContent=d[5];yourTurn.textContent=d[6];checkQuestion.textContent=d[7];checkFeedback.textContent="";checkOptions.innerHTML=d[8].map((x,i)=>`<button data-a="${i}">${x}</button>`).join("");checkOptions.querySelectorAll("button").forEach(b=>b.onclick=()=>{checkFeedback.textContent=(+b.dataset.a===d[9])?"Great job! ✓ That is correct.":"Good try. Read the simple meaning once more and try again."});lessonSummary.textContent=d[10];lesson.classList.remove("hidden");lesson.scrollIntoView({behavior:"smooth"})}
+const state=()=>{try{const s=JSON.parse(localStorage.getItem("ethanKidsCode")||'{"done":[]}');return {done:Array.isArray(s.done)?s.done:[],stars:Number(s.stars)||0,checks:s.checks||{},missions:s.missions||{}}}catch{return {done:[],stars:0,checks:{},missions:{}}}};
+const save=s=>{try{localStorage.setItem("ethanKidsCode",JSON.stringify(s))}catch{}};
+function renderCourses(){const s=state();courseGrid.innerHTML=courses.map((c,i)=>{const complete=c.lessons.every((_,li)=>s.done.includes(i+"-"+li));return `<article data-i="${i}" class="${complete?'completed':''}" tabindex="0"><div class="courseicon">${c.icon}</div><b>${c.stage}</b><h3>${c.name}</h3><p>${c.desc}</p><span class="go">${c.lessons.length} lessons • ${complete?'Review':'Start learning'} →</span></article>`}).join("");document.querySelectorAll("#courseGrid article").forEach(x=>{x.onclick=()=>openLesson(+x.dataset.i,firstIncompleteInCourse(+x.dataset.i));x.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();x.click()}}})}
+function firstIncompleteInCourse(ci){const s=state();const i=courses[ci].lessons.findIndex((_,li)=>!s.done.includes(ci+"-"+li));return i<0?0:i}
+function nextLesson(){const s=state();for(let ci=0;ci<courses.length;ci++){for(let li=0;li<courses[ci].lessons.length;li++){if(!s.done.includes(ci+"-"+li))return [ci,li]}}return [0,0]}
+function continueLearning(){const [ci,li]=nextLesson();openLesson(ci,li)}
+function openLesson(ci,li){current={c:ci,l:li};let c=courses[ci],d=c.lessons[li];lessonCourse.textContent=c.name+" • "+c.tech;lessonCount.textContent=`Lesson ${li+1} of ${c.lessons.length}`;lessonTitle.textContent=d[0];lessonIntro.textContent=d[1];learnWhat.textContent=d[1];simpleMeaning.textContent=d[2];everydayExample.textContent=d[3];showMe.textContent=d[4];tryWithMe.textContent=d[5];yourTurn.textContent=d[6];checkQuestion.textContent=d[7];checkFeedback.textContent="";checkOptions.innerHTML=d[8].map((x,i)=>`<button data-a="${i}">${x}</button>`).join("");checkOptions.querySelectorAll("button").forEach(b=>b.onclick=()=>{const ok=+b.dataset.a===d[9];checkOptions.querySelectorAll("button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");checkFeedback.textContent=ok?"Great job! ✓ That is correct.":"Good try. Read the simple meaning once more and try again.";let s=state();s.checks[current.c+"-"+current.l]=ok;save(s)});lessonSummary.textContent=d[10];lesson.classList.remove("hidden");lesson.scrollIntoView({behavior:"smooth"})}
 closeLesson.onclick=()=>{lesson.classList.add("hidden");courses[0]&&document.querySelector("#courses").scrollIntoView({behavior:"smooth"})};
 startBtn.onclick=missionBtn.onclick=()=>openLesson(0,0);
+continueBtn.onclick=continueLearning; continueProgress.onclick=()=>{progressModal.classList.add("hidden");continueLearning()};
 openPractice.onclick=()=>document.querySelector("#practice").scrollIntoView({behavior:"smooth"});
-completeLesson.onclick=()=>{let s=state(),key=current.c+"-"+current.l;if(!s.done.includes(key))s.done.push(key);save(s);let c=courses[current.c];if(current.l<c.lessons.length-1)openLesson(current.c,current.l+1);else{lesson.classList.add("hidden");showProgress()}};
+completeLesson.onclick=()=>{let s=state(),key=current.c+"-"+current.l;if(!s.done.includes(key)){s.done.push(key);s.stars=(s.stars||0)+1;}save(s);renderCourses();let c=courses[current.c];if(current.l<c.lessons.length-1)openLesson(current.c,current.l+1);else{lesson.classList.add("hidden");showProgress()}};
 const defaults={html:"<h1>Hello! I made this page.</h1>\\n<p>I am learning with Ethan Code.</p>\\n<button>My Button</button>",css:"body {\\n  font-family: Arial, sans-serif;\\n  padding: 30px;\\n}\\nh1 { color: navy; }\\nbutton { padding: 10px; }",js:"// JavaScript can make the page react.\\nconsole.log('My page is ready!');"};
-function setCode(){htmlCode.value=defaults.html;cssCode.value=defaults.css;jsCode.value=defaults.js}function run(){preview.srcdoc=`<!doctype html><style>${cssCode.value}</style>${htmlCode.value}<script>${jsCode.value.replace(/<\\/script/gi,"<\\\\/script")}<\\/script>`}runCode.onclick=run;resetCode.onclick=()=>{setCode();run()};setCode();run();
+function setCode(){
+ htmlCode.value=defaults.html; cssCode.value=defaults.css; jsCode.value=defaults.js;
+}
+function run(){
+ const safeJS=jsCode.value.split("</script>").join("<\\/script>");
+ preview.srcdoc='<!doctype html><html><head><meta charset="utf-8"><style>'+cssCode.value+'</style></head><body>'+htmlCode.value+'<script>'+safeJS+'<\\/script></body></html>';
+}
+runCode.onclick=run;
+resetCode.onclick=()=>{setCode();run()};
+setCode();run();
 function showProgress(){let s=state(),total=courses.reduce((n,c)=>n+c.lessons.length,0),pct=Math.round(s.done.length/total*100);progressBar.style.width=pct+"%";progressText.textContent=`You have finished ${s.done.length} of ${total} classroom lessons (${pct}%). Keep going one small step at a time.`;let bs=["🌱 Coding Starter"];if(s.done.length>=3)bs.push("⭐ Lesson Explorer");if(s.done.length>=9)bs.push("🛠️ Young Builder");if(s.done.length>=18)bs.push("🏆 Code Creator");badges.innerHTML=bs.map(x=>`<span>${x}</span>`).join("");progressModal.classList.remove("hidden")}
 progressBtn.onclick=showProgress;closeProgress.onclick=()=>progressModal.classList.add("hidden");progressModal.onclick=e=>{if(e.target===progressModal)progressModal.classList.add("hidden")};renderCourses();
+
+// v7 child-first learning features
+const missions=[
+["🧩","Sequence Quest","Put instructions in the correct order.","Sequencing"],
+["🎭","Story Maker","Make a character respond to an action.","Events"],
+["🎨","Pattern Artist","Repeat a rule to create a pattern.","Loops"],
+["🏁","Score Challenge","Remember and change a game score.","Variables"]
+];
+function renderMissions(){const s=state();missionGrid.innerHTML=missions.map((m,i)=>`<article class="${s.missions['mission-'+i]?'completed':''}"><div class="mi">${m[0]}</div><small>MISSION ${i+1} • ${m[3]}</small><h3>${m[1]}</h3><p>${m[2]}</p><button data-m="${i}">${s.missions['mission-'+i]?'Play Again':'Start Mission'}</button></article>`).join("");missionGrid.querySelectorAll("button").forEach(b=>b.onclick=()=>chooseMission(+b.dataset.m))}
+renderMissions();
+let activeMission=0;
+const missionOrders=[["RIGHT","RIGHT","DOWN"],["RIGHT","DOWN","RIGHT"],["DOWN","RIGHT","RIGHT"],["RIGHT","RIGHT","DOWN"]];
+function chooseMission(i){activeMission=i;commands=[...missionOrders[i]];shuffleCommands();renderBlocks();document.querySelector("#puzzles").scrollIntoView({behavior:"smooth"});puzzleMessage.textContent=`${missions[i][1]} ready! Put the instructions in the order that reaches the star.`}
+document.querySelectorAll(".pathcards button").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".pathcards button").forEach(x=>x.classList.remove("active")); b.classList.add("active");
+ localStorage.setItem("ethanCodePath",b.dataset.path);
+ const msg={junior:"Junior Explorer selected: start with sequences, patterns and picture-friendly puzzles.",creator:"Creative Coder selected: mix puzzles, games, stories and web basics.",young:"Young Developer selected: move toward written web code, JavaScript and Python concepts."};
+ pathNote.textContent=msg[b.dataset.path];
+});
+const savedPath=localStorage.getItem("ethanCodePath"); if(savedPath){let b=document.querySelector(`[data-path="${savedPath}"]`);if(b)b.click()}
+
+let commands=["RIGHT","RIGHT","DOWN"];
+function shuffleCommands(){for(let i=commands.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[commands[i],commands[j]]=[commands[j],commands[i]]}if(commands.join(",")==="RIGHT,RIGHT,DOWN") [commands[0],commands[2]]=[commands[2],commands[0]];}
+function drawPuzzle(){gridWorld.innerHTML="";for(let i=0;i<12;i++){let c=document.createElement("div");c.className="cell";c.textContent=i===0?"🤖":i===6?"⭐":"";gridWorld.appendChild(c)}renderBlocks()}
+function renderBlocks(){blockList.innerHTML=commands.map((x,i)=>`<div class="block"><span>${i+1}. ${x==="RIGHT"?"Move Right ➡️":"Move Down ⬇️"}</span><div><button data-up="${i}">↑</button><button data-down="${i}">↓</button></div></div>`).join("");blockList.querySelectorAll("[data-up]").forEach(b=>b.onclick=()=>{let i=+b.dataset.up;if(i){[commands[i-1],commands[i]]=[commands[i],commands[i-1]];renderBlocks()}});blockList.querySelectorAll("[data-down]").forEach(b=>b.onclick=()=>{let i=+b.dataset.down;if(i<commands.length-1){[commands[i+1],commands[i]]=[commands[i],commands[i+1]];renderBlocks()}})}
+runPuzzle.onclick=()=>{let p=0;for(let c of commands){if(c==="RIGHT"&&p%4<3)p++;if(c==="DOWN"&&p<8)p+=4}if(p===6){let s=state();const key="mission-"+activeMission;if(!s.missions[key]){s.missions[key]=true;s.stars=(s.stars||0)+1;save(s);puzzleMessage.textContent="⭐ Brilliant! Mission complete — you earned a learning star."}else puzzleMessage.textContent="⭐ Mission complete! You already earned this mission's star.";renderMissions()}else puzzleMessage.textContent="Almost! The bot did not reach the star. Change the order and try again."};
+shufflePuzzle.onclick=()=>{commands=["RIGHT","RIGHT","DOWN"];shuffleCommands();renderBlocks();puzzleMessage.textContent="New order ready. Can you fix it?"};
+hintPuzzle.onclick=()=>hintText.textContent="Hint: the star is two spaces to the right and one space down from the bot. Which moves should happen first?";
+drawPuzzle();
+
+const ideas={
+story:"Start with: 1) choose a character, 2) write a short message, 3) add a button, 4) make the button change the story.",
+game:"Start with: 1) choose a goal, 2) create a score, 3) decide what earns a point, 4) test the rules.",
+art:"Start with: 1) choose a shape, 2) choose a pattern, 3) repeat it, 4) change one colour or size each time.",
+web:"Start with: 1) choose a safe topic, 2) add a heading, 3) add two sections, 4) style the page, 5) check it on a small screen."
+};
+const templates={story:{html:"<h1>My Story</h1><p id='story'>A friendly robot found a map.</p><button id='next'>What happens next?</button>",css:"body{font-family:Arial;padding:30px} button{padding:10px}",js:"document.querySelector('#next').onclick=()=>document.querySelector('#story').textContent='The robot followed the map to a coding club!'"},game:{html:"<h1>Score Challenge</h1><p>Score: <b id='score'>0</b></p><button id='point'>Earn a point</button>",css:"body{font-family:Arial;padding:30px} button{padding:10px}",js:"let score=0;document.querySelector('#point').onclick=()=>document.querySelector('#score').textContent=++score"},art:{html:"<h1>Code Art</h1><div class='art'>★ ★ ★</div>",css:"body{font-family:Arial;padding:30px;text-align:center}.art{font-size:60px;letter-spacing:15px}",js:""},web:{html:"<h1>My Learning Website</h1><h2>About</h2><p>This page shares something useful I am learning.</p>",css:"body{font-family:Arial;max-width:700px;margin:auto;padding:30px}h1{color:navy}",js:""}};
+function loadTemplate(k){const t=templates[k];htmlCode.value=t.html;cssCode.value=t.css;jsCode.value=t.js;run();document.querySelector('#practice').scrollIntoView({behavior:'smooth'})}
+document.querySelectorAll(".interestgrid article").forEach(a=>a.querySelector("button").onclick=()=>{const k=a.dataset.interest;choiceBox.innerHTML=`<b>${ideas[k]}</b><div><button class="primary launch-template" data-template="${k}">Open Starter Template</button></div>`;choiceBox.querySelector('button').onclick=()=>loadTemplate(k)});
+
+explainAgain.onclick=()=>{let d=courses[current.c].lessons[current.l];helpText.textContent="Another way to think about it: "+d[3]};
+showHint.onclick=()=>{let d=courses[current.c].lessons[current.l];helpText.textContent="Hint: look closely at the 'Let me show you' example, then change only one small part when you try it."};
+
+// Enhance existing progress with stars.
+const oldShowProgress=showProgress;
+showProgress=function(){oldShowProgress();let s=state();if(starCount)starCount.textContent=`⭐ ${s.stars||0} learning stars`;};
+progressBtn.onclick=showProgress;
+
+if(menuBtn){
+ menuBtn.onclick=()=>mainNav.classList.toggle("open");
+ mainNav.querySelectorAll("a").forEach(a=>a.onclick=()=>mainNav.classList.remove("open"));
+}
+
+
+// v7.3 accessibility and progress controls
+resetProgress.onclick=()=>{if(confirm("Reset all Ethan Code lesson, quiz, mission and star progress on this device?")){localStorage.removeItem("ethanKidsCode");renderCourses();renderMissions();showProgress()}};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){mainNav.classList.remove("open");progressModal.classList.add("hidden")}});
+document.addEventListener("click",e=>{if(mainNav.classList.contains("open")&&!mainNav.contains(e.target)&&e.target!==menuBtn)mainNav.classList.remove("open")});

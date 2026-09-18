@@ -1,55 +1,26 @@
-# ETHAN HUB v5.0 — Ecosystem + Premium Framework
+# ETHAN CODE v7.3 — Production Robustness Upgrade
 
-Upgraded from the user's working v4.3 Supabase Verify / Auto Login build.
+Domain: https://learncoding.ethandigitalacademy.org
 
-## Dashboard apps
-- Ethan ERP & LMS — Ethan ID SSO
-- Ethan Learn — Hub Access
-- Ethan AI — Ethan ID SSO
-- Ethan Office — Ethan ID SSO
-- Ethan Cloud — Hub Access
-- Ethan GPS — Hub Access
-- Ethan Games — Hub Access
-- NEON BIKE RIDE — Ethan ID SSO
-- Super Kingdom — Hub Access
+This release upgrades the v7.2 child-first classroom while preserving the official Ethan Code branding and all existing lessons.
 
-**Ethan ID SSO** means the existing Hub ticket flow is enabled for that app target in this build.
-**Hub Access** means the service is available from the authenticated Hub dashboard, but true cross-domain auto-login still requires that destination app to implement/accept Ethan SSO tickets.
-
-## Premium framework
-The dashboard now supports Free / Plus / Pro plan display. It safely defaults to Free if the database migration has not been run.
-
-To store plans centrally, run `PREMIUM-PLAN-MIGRATION.sql` once in the Ethan Hub Supabase project. This does not connect payments and does not automatically upgrade users.
+## v7.3 upgrades
+- Explicit DOM bindings instead of relying on browser-created ID globals.
+- Continue Learning opens the learner's first unfinished lesson.
+- Course cards show completed-course state and resume at the first unfinished lesson.
+- Quick-question results persist locally on the learner's device.
+- Mission stars are awarded once per mission instead of repeatedly on replay.
+- Mission completion state is persisted and shown on mission cards.
+- Puzzle shuffle avoids beginning in the already-solved order.
+- Creative Playground now loads safe starter templates into Practice Corner for Story, Mini Game, Code Art and Website projects.
+- Progress panel includes Continue Learning and a confirmed Reset Progress action.
+- Mobile navigation closes on link selection, outside click and Escape.
+- Progress modal closes with Escape.
+- Existing sandboxed HTML/CSS/JavaScript preview retained.
+- Python remains instructional/conceptual; no fake browser Python runtime is claimed.
 
 ## Deployment
-Replace the existing GitHub repository files with this package and redeploy on Vercel. Keep the existing Supabase Auth redirect for the production Hub domain.
+Upload the contents of this ZIP to the Ethan Code GitHub repository and deploy to Vercel. Keep the production domain mapped to learncoding.ethandigitalacademy.org.
 
-
-## v5.2
-Ethan Cloud is now an Ethan ID SSO target (`cloud`) and opens through the existing secure ticket handoff.
-
-
-## ETHAN ID NEW SUPABASE (v5.3)
-This build points Ethan Hub authentication to project `hrymakhatxjitbgpdbjk`.
-The supplied REST endpoint was normalized to the Supabase project base URL; the JavaScript client adds REST/Auth paths itself.
-
-Required Supabase Authentication URL Configuration:
-- Site URL: https://hub.ethandigitalacademy.org
-- Redirect URL: https://hub.ethandigitalacademy.org/**
-
-Run PREMIUM-PLAN-MIGRATION.sql in this new ETHAN ID project if Free / Plus / Pro storage is required.
-Deploy the `ethan-sso` Edge Function in this same project before relying on one-click SSO into connected apps.
-
-## v5.5 dashboard layout fix
-- Preserves the working Ethan ID/Supabase authentication and callback handling from v5.4.
-- Desktop dashboard uses a compact 3 x 3 ecosystem grid so all 9 app cards are presented together.
-- Reduces card height, spacing and typography on desktop without changing mobile/tablet responsiveness.
-
-## v6.0 app launcher fix
-- Only Ethan Cloud uses Ethan ID SSO while its integration is being tested.
-- All other Ethan apps open directly instead of getting stuck on Connecting.
-- Cloud SSO has a 6-second timeout and automatically opens Cloud normally if SSO is unavailable.
-
-
-## v6.1 Ecosystem Hub Update
-The Hub dashboard now exposes 13 current Ethan services. Ethan Code uses https://learncoding.ethandigitalacademy.org. Ethan Games includes the Games Hub, City Drive and Super Kingdom. Ethan Pay and Ethan Document are included as Hub Access. Ethan Cloud remains the current Ethan ID SSO-enabled app. Ethan Certificate is intentionally excluded from general Hub access.
+## Backend status
+Learning progress remains local-first. The included Supabase schema is preparation for later Ethan ID/backend integration; this build does not falsely claim that central authentication or cloud progress sync is active.

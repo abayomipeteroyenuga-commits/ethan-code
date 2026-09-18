@@ -83,3 +83,13 @@ create table if not exists public.ethan_code_classroom_progress (
  unique(user_id, course_key, lesson_key)
 );
 alter table public.ethan_code_classroom_progress enable row level security;
+
+create table if not exists public.ethan_code_learning_preferences (
+ user_id uuid primary key, learning_path text, interests jsonb default '[]'::jsonb, updated_at timestamptz default now()
+);
+create table if not exists public.ethan_code_mission_progress (
+ id uuid primary key default gen_random_uuid(), user_id uuid not null, mission_key text not null,
+ stars int not null default 0, completed_at timestamptz, unique(user_id,mission_key)
+);
+alter table public.ethan_code_learning_preferences enable row level security;
+alter table public.ethan_code_mission_progress enable row level security;
