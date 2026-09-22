@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ethan Code Classroom</title><link rel="stylesheet" href="assets/style.css">
+<title>Ethan Code | Coding Academy & Challenge Lab</title><meta name="description" content="Learn HTML, CSS and JavaScript with Ethan Code. Build real projects, solve progressive coding challenges and test your work in a live coding studio."><link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <header class="top">
  <a class="brand" href="#" aria-label="Ethan Code home"><img class="official-logo" src="assets/ethan-code-logo.png" alt="Ethan Code"></a>
- <button class="menubtn" id="menuBtn" aria-label="Open menu">☰</button><nav id="mainNav"><a href="#classroom">My Classroom</a><a href="#courses">Courses</a><a href="#practice">Practice</a><a href="#projects">Projects</a></nav>
+ <button class="menubtn" id="menuBtn" aria-label="Open menu">☰</button><nav id="mainNav"><a href="#classroom">My Classroom</a><a href="#courses">Courses</a><a href="#codeStudio">Code Studio</a><a href="#practice">Practice</a><a href="#projects">Projects</a><a href="#challengeLab">Challenge Lab</a></nav>
  <button class="pill" id="progressBtn">My Progress</button>
 </header>
 
 <main>
-<section class="hero">
- <div><span class="tag">CODING MADE SIMPLE</span><h1>Learn coding one small step at a time.</h1>
- <p>You do not need to be a programmer already. Ethan Code explains each idea in simple words, shows you an example, and then helps you try it yourself.</p>
- <div class="heroactions"><button class="primary" id="startBtn">Start My First Lesson</button><button class="secondary" id="continueBtn">Continue Learning</button><a class="secondary" href="#courses">See My Courses</a></div>
- <div class="promise"><span>✓ Simple explanations</span><span>✓ Guided practice</span><span>✓ Quick quizzes</span><span>✓ Fun projects</span></div></div>
- <div class="hero-card"><span class="bubble">TODAY'S MISSION</span><div class="bigicon">💻</div><h3>Build your first web page</h3><p>Learn what a website is and make a page say hello.</p><button class="primary" id="missionBtn">Begin Mission</button></div>
+<section class="hero"><div class="hero-glow" aria-hidden="true"></div>
+ <div><span class="tag">ETHAN CODE · LEARN / THINK / BUILD</span><h1>Turn big ideas into <em>real working code.</em></h1>
+ <p>You do not need to be a programmer already. Explore coding from your first webpage to interactive games, debugging and real-world problem solving. Learn the idea, write the code, test your work and tackle the next challenge.</p>
+ <div class="heroactions"><button class="primary" id="startBtn">Start My First Lesson</button><button class="secondary" id="continueBtn">Continue Learning</button><a class="secondary" href="#codeStudio">Open Code Studio →</a><a class="secondary" href="#courses">See My Courses</a></div>
+ <div class="promise"><span>✓ Simple explanations</span><span>✓ Guided practice</span><span>✓ Quick quizzes</span><span>✓ Fun projects</span><span>✓ 12 auto-checked coding challenges</span></div></div>
+ <div class="hero-card hero-terminal"><div class="terminal-top"><span class="terminal-dots">● ● ●</span><span>ethan-code / first-project.html</span></div><div class="terminal-code"><span class="code-purple">&lt;h1&gt;</span>Hello, creator!<span class="code-purple">&lt;/h1&gt;</span><br><span class="code-blue">&lt;button&gt;</span>Launch my idea 🚀<span class="code-blue">&lt;/button&gt;</span><br><span class="code-green">// think → code → test → improve</span></div><div class="terminal-preview"><span>LIVE PREVIEW</span><h3>Hello, creator! 👋</h3><p>Your next big idea starts here.</p><button class="primary" id="missionBtn">Build my first page →</button></div></div>
 </section>
 
 
@@ -86,6 +86,14 @@
  </div>
  <div class="choicebox" id="choiceBox">Choose a project above and Ethan Code will suggest your next steps.</div>
 </section>
+<section class="section studio-section" id="codeStudio">
+ <div class="studio-heading"><div><span class="tag">ETHAN CODE · LIVE CODE STUDIO</span><h2>Write code. Run it. Show my page.</h2><p class="lead">Create a complete webpage using HTML, CSS and JavaScript. Select a language, edit the example, and run your code. Your page appears immediately beneath the editor.</p></div><span class="studio-status" id="studioStatus" role="status" aria-live="polite">Ready to build</span></div>
+ <div class="studio-shell"><div class="studio-toolbar"><div class="studio-tabs" role="tablist" aria-label="Code language"><button type="button" class="studio-tab active" data-studio-tab="html" aria-selected="true">HTML</button><button type="button" class="studio-tab" data-studio-tab="css" aria-selected="false">CSS</button><button type="button" class="studio-tab" data-studio-tab="js" aria-selected="false">JavaScript</button></div><span>Changes are saved on this device</span></div>
+ <div class="studio-editors"><label class="studio-panel active" data-studio-panel="html" for="studioHtml">HTML · Page structure<textarea id="studioHtml" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="HTML code editor"><main class="welcome"><h1>My Ethan Code Page 🚀</h1><p>I built this page with HTML, CSS and JavaScript.</p><button id="helloButton">Click me!</button><p id="message">Try the button above.</p></main></textarea></label><label class="studio-panel" data-studio-panel="css" for="studioCss">CSS · Page design<textarea id="studioCss" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="CSS code editor">body { font-family: system-ui, sans-serif; background: #eef5ff; color: #172b52; padding: 32px; } .welcome { max-width: 650px; margin: auto; padding: 30px; background: white; border-radius: 22px; box-shadow: 0 12px 36px #142b5220; } button { background: #245de8; color: white; border: 0; border-radius: 12px; padding: 12px 20px; cursor: pointer; }</textarea></label><label class="studio-panel" data-studio-panel="js" for="studioJs">JavaScript · Page interactions<textarea id="studioJs" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="JavaScript code editor">document.getElementById('helloButton').addEventListener('click', function () { document.getElementById('message').textContent = 'Amazing! Your JavaScript works 🎉'; });</textarea></label></div>
+ <div class="studio-actions"><button type="button" class="primary" id="studioRun">▶ Run Code</button><button type="button" class="secondary" id="studioShow">Show My Page ↓</button><button type="button" class="secondary" id="studioDownload">⬇ Download My Page (.html)</button><button type="button" class="secondary" id="studioReset">Reset Example</button></div>
+ <div class="studio-output" id="studioOutput"><div class="studio-output-top"><div><strong>Show My Page</strong><small>Your live result appears below. Click buttons in your page to test them.</small></div><button type="button" class="secondary" id="studioRefresh">↻ Refresh page</button></div><iframe id="studioFrame" title="My HTML CSS and JavaScript page" sandbox="allow-scripts allow-modals" referrerpolicy="no-referrer"></iframe></div></div>
+ <p class="studio-note">This studio runs HTML, CSS and browser JavaScript. Java is a different language and requires a separate Java runtime; it cannot run in this webpage editor. Downloaded pages can be opened in your browser.</p>
+</section>
 <section class="section practice" id="practice">
  <span class="tag">PRACTICE CORNER</span><h2>Try your code here</h2><p class="lead">This box is only for practice. Follow the lesson, change one thing at a time, then press <b>Show My Page</b>.</p>
  <div class="practicebox"><div class="practicehelp"><b id="practiceTitle">My First Web Page</b><p id="practiceHelp">Type a heading and a short message. Mistakes are part of learning.</p></div>
@@ -94,6 +102,7 @@
  <iframe id="preview" title="My practice result" sandbox="allow-scripts"></iframe></div>
 </section>
 
+<section class="section challenge-section" id="challengeLab"><div class="challenge-intro"><div><span class="tag">NEW · HANDS-ON CODING STUDIO</span><h2>Challenge Lab: think harder, build smarter.</h2><p class="lead">Twelve progressive coding tasks across HTML, CSS and JavaScript. Write real code, run a live preview, then check your solution against clear requirements. Unlock the next task as you progress—or explore any task at your own pace.</p></div><div class="challenge-stats"><strong id="challengeDone">0 / 12</strong><span>challenges completed on this device</span></div></div><div class="challenge-layout"><aside class="challenge-sidebar"><label for="challengeFilter">Find a challenge</label><input id="challengeFilter" type="search" placeholder="Search tasks, skills, levels…"><div class="challenge-list" id="challengeList"></div></aside><div class="challenge-workspace"><div class="challenge-header"><span class="tag" id="challengeLevel">LEVEL 1</span><span id="challengeSkill">HTML</span></div><h3 id="challengeTitle">Select a challenge</h3><p id="challengeDescription"></p><div class="challenge-requirements"><b>Acceptance criteria</b><ul id="challengeCriteria"></ul></div><details class="challenge-hint"><summary>Need a clue? Open a hint</summary><p id="challengeHint"></p></details><div class="challenge-editor-header"><b>YOUR CODE</b><span id="challengeLanguage">HTML</span></div><textarea id="challengeCode" spellcheck="false" aria-label="Challenge code editor"></textarea><div class="challenge-actions"><button class="secondary" id="challengeReset">Reset starter</button><button class="secondary" id="challengeRun">Run preview</button><button class="primary" id="challengeCheck">Check my solution ✓</button></div><div class="challenge-feedback" id="challengeFeedback" role="status" aria-live="polite">Write your solution, then run or check it.</div><iframe id="challengePreview" title="Challenge preview" sandbox="allow-scripts"></iframe></div></div></section>
 <section class="section soft" id="projects">
  <span class="tag">MY PROJECTS</span><h2>Make something you can be proud of</h2><div class="projectgrid">
  <article><div>🌟</div><h3>All About Me Page</h3><p>Create a friendly webpage about an imaginary character, hobby or school club.</p><span>Starter Project</span></article>
@@ -106,4 +115,4 @@
 
 <div class="modal hidden" id="progressModal"><div class="modalbox"><button class="x" id="closeProgress">×</button><span class="tag">MY PROGRESS</span><h2>Look how far you have come!</h2><div class="stars" id="starCount">⭐ 0 learning stars</div><div class="progressline"><i id="progressBar"></i></div><p id="progressText"></p><div id="badges" class="badges"></div><div class="progressactions"><button class="secondary" id="continueProgress">Continue Learning</button><button class="danger-lite" id="resetProgress">Reset My Progress</button></div></div></div>
 <footer><b>ETHAN CODE</b><span>Learn • Try • Build • Grow</span><small>Powered by Ethan Digital Academy</small></footer>
-<script src="assets/app.js"></script></body></html>
+<script src="assets/app.js"></script><script src="assets/studio.js"></script><script src="assets/challenges.js"></script></body></html>
