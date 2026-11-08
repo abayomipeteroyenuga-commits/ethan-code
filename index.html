@@ -7,7 +7,7 @@
 <body>
 <header class="top">
  <a class="brand" href="#" aria-label="Ethan Code home"><img class="official-logo" src="assets/ethan-code-logo.png" alt="Ethan Code"></a>
- <button class="menubtn" id="menuBtn" aria-label="Open menu">☰</button><nav id="mainNav"><a href="#classroom">My Classroom</a><a href="#courses">Courses</a><a href="#codingPlatforms">Coding Tools</a><a href="#blockLab">Block Lab</a><a href="#codeStudio">Code Studio</a><a href="#practice">Practice</a><a href="#projects">Projects</a><a href="#challengeLab">Challenge Lab</a></nav>
+ <button class="menubtn" id="menuBtn" aria-label="Open menu">☰</button><nav id="mainNav"><a href="#classroom">My Classroom</a><a href="#ethanClassroom">Classroom</a><a href="#courses">Courses</a><a href="#codingPlatforms">Coding Tools</a><a href="#blockLab">Block Lab</a><a href="#codeStudio">Code Studio</a><a href="#practice">Practice</a><a href="#projects">Projects</a><a href="#challengeLab">Challenge Lab</a></nav>
  <button class="pill" id="progressBtn">My Progress</button><button class="pill install-app" id="installAppBtn" hidden>Install App</button>
 </header>
 
@@ -175,6 +175,53 @@
  <p class="unique-footnote">Privacy note: these workshop tools store progress and portfolio entries in this browser only. They do not upload student work to a server or provide cloud sync. Do not add private personal information.</p>
 </section>
 
+
+<section class="section ethan-classroom" id="ethanClassroom">
+ <div class="classroom-head"><div><span class="tag">ETHAN CODE · CLASSROOM WORKSPACE</span><h2>Teach. Practise. Submit. Improve.</h2><p class="lead">A practical classroom workspace for coding assignments, student submissions and automatic checks.</p></div><span class="classroom-local">LOCAL WORKSPACE · THIS DEVICE</span></div>
+ <div class="classroom-notice"><strong>Prototype mode:</strong> This version saves classroom data in this browser only. Teacher and student devices do not sync, and it is not a secure school account system yet. Use sample names and non-sensitive work while evaluating it.</div>
+ <div class="classroom-tabs" role="tablist" aria-label="Classroom workspace">
+  <button type="button" class="active" data-classroom-tab="teacher" role="tab" aria-selected="true">👩‍🏫 Teacher desk</button>
+  <button type="button" data-classroom-tab="student" role="tab" aria-selected="false">💻 Student desk</button>
+  <button type="button" data-classroom-tab="reports" role="tab" aria-selected="false">📊 Class reports</button>
+ </div>
+ <div class="classroom-panel active" data-classroom-panel="teacher">
+  <div class="classroom-columns">
+   <div class="classroom-card">
+    <span class="unique-kicker">ASSIGNMENT BUILDER</span><h3>Create a coding task</h3>
+    <label class="unique-label" for="classAssignmentTitle">Assignment title</label><input id="classAssignmentTitle" maxlength="90" placeholder="e.g. Build a personal profile card">
+    <label class="unique-label" for="classAssignmentLevel">Learning level</label><select id="classAssignmentLevel"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select>
+    <label class="unique-label" for="classAssignmentLanguage">Coding language</label><select id="classAssignmentLanguage"><option>HTML</option><option>CSS</option><option>JavaScript</option><option>Blockly / JavaScript</option><option>Python (conceptual exercise)</option></select>
+    <label class="unique-label" for="classAssignmentBrief">Instructions for students</label><textarea id="classAssignmentBrief" rows="4" maxlength="1200" placeholder="Explain what students should build and how it should work."></textarea>
+    <label class="unique-label" for="classAssignmentChecks">Automatic checks (comma-separated words or phrases)</label><input id="classAssignmentChecks" maxlength="400" placeholder="h1, profile, background-color">
+    <p class="classroom-help">Each check is a phrase expected in the student's submitted code. The system awards one point per matched phrase. This is a simple transparent code check, not AI grading or a full compiler.</p>
+    <button type="button" class="primary" id="classCreateAssignment">Publish assignment</button>
+    <p class="classroom-feedback" id="classTeacherFeedback" role="status" aria-live="polite"></p>
+   </div>
+   <div class="classroom-card"><span class="unique-kicker">YOUR ASSIGNMENTS</span><h3>Assignment library</h3><div id="classAssignmentList" class="class-assignment-list"></div></div>
+  </div>
+ </div>
+ <div class="classroom-panel" data-classroom-panel="student" hidden>
+  <div class="classroom-columns">
+   <div class="classroom-card">
+    <span class="unique-kicker">STUDENT SUBMISSION</span><h3>Complete your assignment</h3>
+    <label class="unique-label" for="classStudentName">Your display name</label><input id="classStudentName" maxlength="50" placeholder="e.g. Student 01">
+    <label class="unique-label" for="classChooseAssignment">Choose an assignment</label><select id="classChooseAssignment"></select>
+    <div id="classStudentBrief" class="student-assignment-brief">Choose an assignment to see its instructions.</div>
+    <label class="unique-label" for="classStudentCode">Paste your code or written solution</label><textarea id="classStudentCode" rows="12" spellcheck="false" placeholder="Write or paste your solution here..."></textarea>
+    <button type="button" class="primary" id="classSubmitWork">Submit and check my work</button>
+    <div id="classGradeResult" class="class-grade-result" role="status" aria-live="polite">Your score and feedback will appear here.</div>
+   </div>
+   <div class="classroom-card"><span class="unique-kicker">MY SUBMISSION HISTORY</span><h3>My recent work</h3><div id="classStudentHistory" class="class-assignment-list"></div></div>
+  </div>
+ </div>
+ <div class="classroom-panel" data-classroom-panel="reports" hidden>
+  <div class="classroom-card">
+   <div class="report-top"><div><span class="unique-kicker">TEACHER OVERVIEW</span><h3>Class performance</h3><p class="classroom-help">Submissions saved in this browser. Scores are based on assignment phrase checks.</p></div><button type="button" class="secondary" id="classExportReport">Export report CSV</button></div>
+   <div class="classroom-metrics"><div><strong id="classMetricAssignments">0</strong><span>Assignments</span></div><div><strong id="classMetricSubmissions">0</strong><span>Submissions</span></div><div><strong id="classMetricAverage">—</strong><span>Average score</span></div><div><strong id="classMetricPass">0</strong><span>100% checks met</span></div></div>
+   <div class="class-report-table-wrap"><table class="class-report-table"><thead><tr><th>Student</th><th>Assignment</th><th>Score</th><th>Feedback</th><th>Date</th></tr></thead><tbody id="classReportRows"><tr><td colspan="5">No submissions yet.</td></tr></tbody></table></div>
+  </div>
+ </div>
+</section>
 </main></textarea></label><label class="studio-panel" data-studio-panel="css" for="studioCss">CSS · Page design<textarea id="studioCss" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="CSS code editor">body { font-family: system-ui, sans-serif; background: #eef5ff; color: #172b52; padding: 32px; } .welcome { max-width: 650px; margin: auto; padding: 30px; background: white; border-radius: 22px; box-shadow: 0 12px 36px #142b5220; } button { background: #245de8; color: white; border: 0; border-radius: 12px; padding: 12px 20px; cursor: pointer; }</textarea></label><label class="studio-panel" data-studio-panel="js" for="studioJs">JavaScript · Page interactions<textarea id="studioJs" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="JavaScript code editor">document.getElementById('helloButton').addEventListener('click', function () { document.getElementById('message').textContent = 'Amazing! Your JavaScript works 🎉'; });</textarea></label></div>
  <div class="studio-actions"><button type="button" class="primary" id="studioRun">▶ Run Code</button><button type="button" class="secondary" id="studioShow">Show My Page ↓</button><button type="button" class="secondary" id="studioDownload">⬇ Download My Page (.html)</button><button type="button" class="secondary" id="studioReset">Reset Example</button></div>
  <div class="studio-output" id="studioOutput"><div class="studio-output-top"><div><strong>Show My Page</strong><small>Your live result appears below. Click buttons in your page to test them.</small></div><button type="button" class="secondary" id="studioRefresh">↻ Refresh page</button></div><iframe id="studioFrame" title="My HTML CSS and JavaScript page" sandbox="allow-scripts allow-modals" referrerpolicy="no-referrer"></iframe></div></div>
@@ -201,4 +248,4 @@
 
 <div class="modal hidden" id="progressModal"><div class="modalbox"><button class="x" id="closeProgress">×</button><span class="tag">MY PROGRESS</span><h2>Look how far you have come!</h2><div class="stars" id="starCount">⭐ 0 learning stars</div><div class="progressline"><i id="progressBar"></i></div><p id="progressText"></p><div id="badges" class="badges"></div><div class="progressactions"><button class="secondary" id="continueProgress">Continue Learning</button><button class="danger-lite" id="resetProgress">Reset My Progress</button></div></div></div>
 <footer><b>ETHAN CODE</b><span>Learn • Try • Build • Grow</span><small>Powered by Ethan Digital Academy</small></footer>
-<script src="assets/extra-courses.js"></script><script src="assets/app.js"></script><script src="assets/studio.js"></script><script src="assets/challenges.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/blockly_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/blocks_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/javascript_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/msg/en.js"></script><script src="assets/blockly-lab.js"></script><script src="assets/pwa.js"></script><script src="assets/ethan-workshop.js"></script></body></html>
+<script src="assets/extra-courses.js"></script><script src="assets/app.js"></script><script src="assets/studio.js"></script><script src="assets/challenges.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/blockly_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/blocks_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/javascript_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/msg/en.js"></script><script src="assets/blockly-lab.js"></script><script src="assets/pwa.js"></script><script src="assets/ethan-workshop.js"></script><script src="assets/ethan-classroom.js"></script></body></html>
