@@ -206,3 +206,5 @@ body[data-page="home"] main>#pathfinder{background:#f7faff}
  .welcome-feature-strip>div>span{width:32px;height:32px;font-size:18px}
  .welcome-feature-strip b{font-size:11px}.welcome-feature-strip small{font-size:9px}
 }
+
+.photo-credit{display:block;margin:8px 4px 0;text-align:right;color:#9ec9f3;font-size:10px;text-decoration:underline}.photo-credit:hover{color:#fff}
