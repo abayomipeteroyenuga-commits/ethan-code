@@ -1,6 +1,6 @@
-const CACHE_NAME = 'ethan-code-v8-5';
+const CACHE_NAME = 'ethan-code-v8-6';
 const CORE_ASSETS = [
-  './', './index.html', './manifest.webmanifest',
+  './', './index.html', './my-classroom.html', './courses.html', './coding-tools.html', './block-lab.html', './code-studio.html', './practice.html', './projects.html', './classroom.html', './assets/page-navigation.js', './manifest.webmanifest',
   './assets/style.css', './assets/ethan-code-logo.png',
   './assets/extra-courses.js', './assets/app.js', './assets/studio.js',
   './assets/challenges.js', './assets/blockly-lab.js', './assets/pwa.js', './assets/ethan-workshop.js', './assets/ethan-classroom-cloud.js',
