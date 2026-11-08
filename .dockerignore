@@ -1,0 +1,12 @@
+.git
+.github
+.vercel
+node_modules
+.DS_Store
+*.zip
+*.log
+.env
+.env.*
+README.md
+RAILWAY_DEPLOYMENT.md
+vercel.json
