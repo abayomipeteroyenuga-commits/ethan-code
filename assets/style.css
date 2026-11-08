@@ -42,7 +42,7 @@
 .detective-feedback.good{background:#e8f8ee;color:#145c34}.detective-feedback.try{background:#fff3e8;color:#82410e}
 .unique-card>.secondary,.unique-card>.primary{margin-top:9px}
 .unique-label{display:block;margin:14px 0 6px;font-size:11px;font-weight:850;color:#40516e}
-.unique-card input,.unique-card select,.unique-card textarea{box-sizing:border-box;width:100%;padding:11px 12px;border:1px solid #d4deed;border-radius:10px;background:#fff;color:#192b49;font:13px inherit}
+.unique-card input,.unique-card select,.unique-card textarea{box-sizing:border-box;width:100%;padding:11px 12px;border:1px solid #d4deed;border-radius:10px;background:#fff;color:#192b49;font:inherit;font-size:13px}
 .unique-card textarea{resize:vertical;line-height:1.5}
 .blueprint-output{min-height:210px;max-height:340px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;margin:15px 0 6px;padding:15px;border-radius:12px;background:#101b33;color:#e4f3ff;font:12px/1.7 ui-monospace,Consolas,monospace}
 .unique-card button:disabled{opacity:.45;cursor:not-allowed}
