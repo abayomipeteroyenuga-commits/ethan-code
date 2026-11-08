@@ -27,7 +27,9 @@ Keep the existing Vercel deployment and DNS unchanged until Render has passed al
 
 - Build command: none (static files are published from the repository root).
 - Publish directory: `.`
-- No database migration is required for this static build.
-- Learner progress and Blockly workspace are browser-local; this build does not provide account-based cross-device sync.
+- Ethan Code Classroom uses a dedicated Neon PostgreSQL project with Neon Auth and the Neon Data API. Its public Auth and Data API URLs are configured in `assets/ethan-classroom-cloud.js`; no database password or admin secret is exposed in the browser.
+- The classroom database has row-level security policies for teacher/student access. Submission scores are recalculated by a database trigger from the teacher's published phrase checks.
+- The classroom requires the production Neon schema, Data API and trusted origins to be provisioned before use. The current app code targets `https://ethan-code.onrender.com` and `https://learncoding.ethandigitalacademy.org`.
+- General learner progress and Blockly workspace remain browser-local. Only classroom accounts, memberships, assignments and submissions are cloud-synced.
 - Blockly is loaded from the pinned `blockly@13.4.0` CDN package, so first-load access to that CDN is required.
 - The repository's Dockerfile and Nginx configuration are retained for portability but are not used by Render's static-site blueprint.
