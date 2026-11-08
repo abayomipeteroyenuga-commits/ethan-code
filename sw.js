@@ -1,9 +1,9 @@
-const CACHE_NAME = 'ethan-code-v8-2';
+const CACHE_NAME = 'ethan-code-v8-3';
 const CORE_ASSETS = [
   './', './index.html', './manifest.webmanifest',
   './assets/style.css', './assets/ethan-code-logo.png',
   './assets/extra-courses.js', './assets/app.js', './assets/studio.js',
-  './assets/challenges.js', './assets/blockly-lab.js', './assets/pwa.js',
+  './assets/challenges.js', './assets/blockly-lab.js', './assets/pwa.js', './assets/ethan-workshop.js',
   './icons/icon-192.png', './icons/icon-512.png'
 ];
 const BLOCKLY_ASSETS = [
