@@ -62,8 +62,6 @@ async function signUp(){
     $("cloudSignUp").disabled=true;
     const result=await auth.signUp.email({name,email,password});
     if(result?.error)throw result.error;
-    const otp=await auth.emailOtp.sendVerificationOtp({email,type:"email-verification"});
-    if(otp?.error)throw otp.error;
     $("cloudOtpPanel").hidden=false;
     feedback("cloudAuthFeedback","Account created. Enter the verification code sent to "+email+".");
   }catch(e){showAuthError(e)}finally{$("cloudSignUp").disabled=false}
