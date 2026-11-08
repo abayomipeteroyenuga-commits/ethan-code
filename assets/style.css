@@ -97,3 +97,24 @@
 #cloudSelectedClass h4{margin:22px 0 12px;color:#1b2c4c}
 #cloudSelectedClass[hidden],#classCloudApp[hidden],#classAuthPanel[hidden]{display:none!important}
 @media(max-width:650px){.cloud-auth-grid{grid-template-columns:1fr;gap:7px}.cloud-form-two{grid-template-columns:1fr}.cloud-auth-actions button{flex:1}.cloud-account-bar{align-items:flex-start;flex-direction:column}}
+
+/* Independent Ethan Code pages: one menu destination, one focused workspace */
+body[data-page] main>section{display:none!important}
+body[data-page="home"] main>.hero,
+body[data-page="home"] main>#pathfinder{display:block!important}
+body[data-page="my-classroom"] main>#classroom{display:block!important}
+body[data-page="courses"] main>#courses,
+body[data-page="courses"] main>#lesson{display:block!important}
+body[data-page="coding-tools"] main>#codingPlatforms{display:block!important}
+body[data-page="block-lab"] main>#blockLab{display:block!important}
+body[data-page="code-studio"] main>#codeStudio{display:block!important}
+body[data-page="practice"] main>#practice,
+body[data-page="practice"] main>#challengeLab,
+body[data-page="practice"] main>#adventure,
+body[data-page="practice"] main>#puzzles,
+body[data-page="practice"] main>#creative{display:block!important}
+body[data-page="projects"] main>#projects,
+body[data-page="projects"] main>#ethanWorkshop{display:block!important}
+body[data-page="classroom"] main>#ethanClassroom{display:block!important}
+#mainNav a[aria-current="page"]{color:#245de8;background:#edf3ff;border-radius:9px}
+@media(max-width:980px){#mainNav{max-height:min(75vh,620px);overflow:auto}}
