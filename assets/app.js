@@ -124,7 +124,7 @@ showProgress=function(){oldShowProgress();let s=state();if(starCount)starCount.t
 progressBtn.onclick=showProgress;
 
 if(menuBtn){
- menuBtn.onclick=()=>mainNav.classList.toggle("open");
+ menuBtn.onclick=()=>{const open=mainNav.classList.toggle("open");menuBtn.setAttribute("aria-expanded",String(open));menuBtn.setAttribute("aria-label",open?"Close menu":"Open menu")};
  mainNav.querySelectorAll("a").forEach(a=>a.onclick=()=>mainNav.classList.remove("open"));
 }
 
