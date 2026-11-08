@@ -1,6 +1,6 @@
 # ETHAN CODE v8.3 — Expanded Visual Coding & Programming Academy
 
-A static, responsive learning platform for `learncoding.ethandigitalacademy.org`, prepared for portable Docker deployment on Railway while retaining its existing Vercel configuration during migration.
+A static, responsive learning platform for `learncoding.ethandigitalacademy.org`, prepared for deployment on Render Static Sites while retaining its existing Vercel configuration during migration.
 
 ## Learning platform
 
@@ -20,11 +20,11 @@ A static, responsive learning platform for `learncoding.ethandigitalacademy.org`
 
 ## Deployment
 
-### Railway
+### Render
 
-The repository includes a root `Dockerfile`, Nginx configuration template and Railway deployment guide. Railway can build the Docker image directly from GitHub. Nginx listens on Railway's injected `PORT` and exposes `/healthz` for deployment health checks.
+The repository includes a `render.yaml` Blueprint for a Render Static Site. No build step or Docker runtime is required; the repository root is published directly.
 
-See [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md) for service setup and a safe custom-domain cutover checklist.
+See [RENDER_DEPLOYMENT.md](RENDER_DEPLOYMENT.md) for setup, validation and a safe custom-domain cutover checklist.
 
 ### Vercel
 
@@ -38,8 +38,9 @@ The existing Vercel configuration is retained during migration. Do not remove th
 - `assets/app.js`, `assets/studio.js`, `assets/challenges.js`, `assets/style.css` — learning application and styling.
 - `assets/pwa.js`, `manifest.webmanifest`, `sw.js`, `icons/` — PWA support.
 - `supabase/schema.sql` — retained schema reference; this static build does not require a database migration.
-- `Dockerfile`, `nginx/default.conf.template` — Railway container deployment.
-- `RAILWAY_DEPLOYMENT.md` — deployment and custom-domain migration guide.
+- `render.yaml` — Render Static Site Blueprint.
+- `RENDER_DEPLOYMENT.md` — Render deployment and custom-domain migration guide.
+- `Dockerfile`, `nginx/default.conf.template` — optional portable container deployment files.
 
 ## Attribution
 
