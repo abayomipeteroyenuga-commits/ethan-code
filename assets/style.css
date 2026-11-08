@@ -82,3 +82,18 @@
 .class-report-table-wrap{overflow-x:auto}.class-report-table{width:100%;border-collapse:collapse;font-size:12px}.class-report-table th,.class-report-table td{padding:12px;text-align:left;border-bottom:1px solid #e7edf5;white-space:nowrap}.class-report-table th{background:#f7f9fd;color:#40516d;font-size:11px}
 @media(max-width:800px){.classroom-columns{grid-template-columns:1fr}.classroom-metrics{grid-template-columns:1fr 1fr}}
 @media(max-width:500px){.classroom-card{padding:16px}.classroom-tabs button{flex:1 1 100%}.report-top .secondary{width:100%;text-align:center}}
+
+/* Ethan Code secure cloud classroom */
+.cloud-auth{margin:18px 0}.cloud-auth-copy p{font-size:13px;color:#687995;line-height:1.6}
+.cloud-auth-grid{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px 14px;max-width:680px;align-items:center}
+.cloud-auth-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.cloud-auth-actions button{min-width:140px}.cloud-auth #cloudOtpPanel{max-width:680px;margin-top:16px}
+.cloud-auth #cloudOtpPanel input{margin:7px 0}
+.cloud-account-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:16px 0}
+.cloud-account-bar strong,.cloud-account-bar small{display:block}.cloud-account-bar strong{font-size:17px;color:#1b2c4c}.cloud-account-bar small{font-size:11px;color:#73819a;margin-top:4px}
+.cloud-actions-grid{margin:16px 0}.cloud-class-list{margin:16px 0}
+.cloud-form-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cloud-form-two>div{min-width:0}.cloud-form-two select{margin-top:6px}
+#cloudSelectedClass h4{margin:22px 0 12px;color:#1b2c4c}
+#cloudSelectedClass[hidden],#classCloudApp[hidden],#classAuthPanel[hidden]{display:none!important}
+@media(max-width:650px){.cloud-auth-grid{grid-template-columns:1fr;gap:7px}.cloud-form-two{grid-template-columns:1fr}.cloud-auth-actions button{flex:1}.cloud-account-bar{align-items:flex-start;flex-direction:column}}
