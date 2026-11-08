@@ -143,14 +143,14 @@ async function createClass(){
 }
 async function joinClass(){
   const code=$("cloudJoinCode").value.trim().toUpperCase(),display=$("cloudDisplayName").value.trim()||currentUser.name||"Student";
-  if(!code){feedback("cloudStudentFeedback","Enter your teacher's invitation code.","error");return}
+  if(!code){feedback("cloudJoinFeedback","Enter your teacher's invitation code.","error");return}
   try{
     $("cloudJoinClass").disabled=true;
     await api("/rpc/join_classroom",{method:"POST",body:JSON.stringify({p_join_code:code,p_display_name:display})});
     $("cloudJoinCode").value="";
-    feedback("cloudStudentFeedback","You have joined the classroom. It is now available in Your Online Classes.","success");
+    feedback("cloudJoinFeedback","You have joined the classroom. It is now available in Your Online Classes.","success");
     await loadClasses();
-  }catch(e){feedback("cloudStudentFeedback",errorText(e),"error")}finally{$("cloudJoinClass").disabled=false}
+  }catch(e){feedback("cloudJoinFeedback",errorText(e),"error")}finally{$("cloudJoinClass").disabled=false}
 }
 async function openClass(c){
   selectedClass=c; selectedRole=c.role;
