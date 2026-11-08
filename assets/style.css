@@ -118,3 +118,35 @@ body[data-page="projects"] main>#ethanWorkshop{display:block!important}
 body[data-page="classroom"] main>#ethanClassroom{display:block!important}
 #mainNav a[aria-current="page"]{color:#245de8;background:#edf3ff;border-radius:9px}
 @media(max-width:980px){#mainNav{max-height:min(75vh,620px);overflow:auto}}
+
+/* Ethan Code full journey visual overhaul — shared from first menu page to last */
+:root{--ethan-ink:#101c39;--ethan-blue:#2855ec;--ethan-sky:#eaf2ff;--ethan-line:#dce6f5;--ethan-muted:#63718b}
+html{scroll-padding-top:94px}
+body{color:var(--ethan-ink);background:#f5f8ff}
+.top{height:auto;min-height:78px;padding:10px clamp(16px,3.4vw,54px);gap:clamp(10px,1.5vw,22px);background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid #dce6f5;box-shadow:0 8px 30px #10213e0d}
+.top nav{flex:1;min-width:0;justify-content:center;gap:clamp(7px,1vw,15px);overflow-x:auto;scrollbar-width:thin;white-space:nowrap}
+.top nav a{padding:10px 9px;border-radius:10px;font-size:12px;transition:background .18s ease,color .18s ease}
+.top nav a:hover,.top nav a:focus-visible{background:#edf3ff;color:var(--ethan-blue);outline:none}
+.top nav a[aria-current="page"]{background:#e9efff;color:#214de0;box-shadow:inset 0 0 0 1px #d8e3ff}
+.top .pill{flex:none;padding:11px 14px;font-size:12px}
+main{min-height:75vh;background:radial-gradient(ellipse at 8% 0%,#e7efff 0,transparent 34%),radial-gradient(ellipse at 100% 50%,#eaf8ff 0,transparent 32%),linear-gradient(180deg,#f8faff 0%,#f1f5fc 100%)}
+body[data-page]:not([data-page="home"]) main>section{position:relative;isolation:isolate;min-height:calc(100vh - 160px);padding:clamp(34px,5vw,72px) clamp(18px,6.5vw,100px);background:transparent;border:0;border-radius:0}
+body[data-page]:not([data-page="home"]) main>section:before{content:"";position:absolute;z-index:-1;inset:18px clamp(10px,2.4vw,36px);border:1px solid rgba(210,223,245,.8);border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(246,249,255,.92));box-shadow:0 18px 55px #1c37600a}
+body[data-page="home"] main{background:#f6f9ff}
+body[data-page="home"] main>.hero{min-height:650px;padding:clamp(54px,7vw,96px) clamp(22px,7vw,110px)}
+body[data-page="home"] main>#pathfinder{background:linear-gradient(145deg,#f7faff,#edf3ff);padding:64px clamp(22px,7vw,110px)}
+body[data-page="home"] main>#pathfinder:after{content:"";display:block;height:1px;background:linear-gradient(90deg,transparent,#dce6f5,transparent);margin-top:45px}
+.section h2{letter-spacing:-.035em;color:#122344;font-size:clamp(27px,3vw,39px)}
+.section .lead{max-width:850px}
+.coursegrid article,.platform-card,.projectgrid article,.missiongrid article,.interestgrid article,.levels article,.unique-card,.classroom-card,.challenge-sidebar,.challenge-workspace{border-color:#dce5f3;box-shadow:0 12px 32px #172f5709}
+.coursegrid article,.platform-card,.projectgrid article,.missiongrid article,.interestgrid article{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.coursegrid article:hover,.platform-card:hover,.projectgrid article:hover,.missiongrid article:hover,.interestgrid article:hover{transform:translateY(-3px);border-color:#a9bdf2;box-shadow:0 18px 38px #1c376018}
+.primary,.pill{background:linear-gradient(135deg,#315ff0,#2148d5);box-shadow:0 7px 18px #2855ec24}
+.primary:hover,.pill:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.secondary{border:1px solid #d9e4f6;background:#f4f7ff;color:#214aab}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #82a5ff;outline-offset:2px}
+footer{background:#101c39;color:#c4d0e7;border:0;align-items:center;flex-wrap:wrap}
+footer b{color:#fff}
+@media(max-width:1380px){.menubtn{display:block;margin-left:auto}.top nav{display:none}.top nav.open{display:flex;position:absolute;top:100%;left:0;right:0;max-height:72vh;overflow:auto;background:rgba(255,255,255,.98);padding:16px clamp(18px,5vw,70px);flex-direction:row;flex-wrap:wrap;justify-content:flex-start;border-bottom:1px solid #dce6f5;box-shadow:0 18px 35px #142b5218}.top .pill{margin-left:0}}
+@media(max-width:700px){.top{min-height:68px;gap:8px}.official-logo{width:88px;height:48px}.top .brand{min-width:90px}.top .pill{padding:9px 10px;font-size:11px}.top nav.open{flex-direction:column;flex-wrap:nowrap;gap:5px}.top nav.open a{width:100%;padding:12px}.hero{padding:48px 5%}.heroactions{align-items:stretch}.heroactions>*{flex:1 1 100%;text-align:center}.section h2{line-height:1.12}body[data-page]:not([data-page="home"]) main>section{padding:28px 15px;min-height:calc(100vh - 130px)}body[data-page]:not([data-page="home"]) main>section:before{inset:10px 6px;border-radius:19px}footer{padding:28px 18px;gap:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
