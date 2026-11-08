@@ -177,48 +177,49 @@
 
 
 <section class="section ethan-classroom" id="ethanClassroom">
- <div class="classroom-head"><div><span class="tag">ETHAN CODE · CLASSROOM WORKSPACE</span><h2>Teach. Practise. Submit. Improve.</h2><p class="lead">A practical classroom workspace for coding assignments, student submissions and automatic checks.</p></div><span class="classroom-local">LOCAL WORKSPACE · THIS DEVICE</span></div>
- <div class="classroom-notice"><strong>Prototype mode:</strong> This version saves classroom data in this browser only. Teacher and student devices do not sync, and it is not a secure school account system yet. Use sample names and non-sensitive work while evaluating it.</div>
- <div class="classroom-tabs" role="tablist" aria-label="Classroom workspace">
-  <button type="button" class="active" data-classroom-tab="teacher" role="tab" aria-selected="true">👩‍🏫 Teacher desk</button>
-  <button type="button" data-classroom-tab="student" role="tab" aria-selected="false">💻 Student desk</button>
-  <button type="button" data-classroom-tab="reports" role="tab" aria-selected="false">📊 Class reports</button>
- </div>
- <div class="classroom-panel active" data-classroom-panel="teacher">
-  <div class="classroom-columns">
-   <div class="classroom-card">
-    <span class="unique-kicker">ASSIGNMENT BUILDER</span><h3>Create a coding task</h3>
-    <label class="unique-label" for="classAssignmentTitle">Assignment title</label><input id="classAssignmentTitle" maxlength="90" placeholder="e.g. Build a personal profile card">
-    <label class="unique-label" for="classAssignmentLevel">Learning level</label><select id="classAssignmentLevel"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select>
-    <label class="unique-label" for="classAssignmentLanguage">Coding language</label><select id="classAssignmentLanguage"><option>HTML</option><option>CSS</option><option>JavaScript</option><option>Blockly / JavaScript</option><option>Python (conceptual exercise)</option></select>
-    <label class="unique-label" for="classAssignmentBrief">Instructions for students</label><textarea id="classAssignmentBrief" rows="4" maxlength="1200" placeholder="Explain what students should build and how it should work."></textarea>
-    <label class="unique-label" for="classAssignmentChecks">Automatic checks (comma-separated words or phrases)</label><input id="classAssignmentChecks" maxlength="400" placeholder="h1, profile, background-color">
-    <p class="classroom-help">Each check is a phrase expected in the student's submitted code. The system awards one point per matched phrase. This is a simple transparent code check, not AI grading or a full compiler.</p>
-    <button type="button" class="primary" id="classCreateAssignment">Publish assignment</button>
-    <p class="classroom-feedback" id="classTeacherFeedback" role="status" aria-live="polite"></p>
-   </div>
-   <div class="classroom-card"><span class="unique-kicker">YOUR ASSIGNMENTS</span><h3>Assignment library</h3><div id="classAssignmentList" class="class-assignment-list"></div></div>
+ <div class="classroom-head"><div><span class="tag">ETHAN CODE · SECURE ONLINE CLASSROOM</span><h2>Teach. Practise. Submit. Improve.</h2><p class="lead">Create a class, invite learners with a class code, publish coding assignments and review submissions from anywhere.</p></div><span class="classroom-local" id="cloudStatus">CLOUD CLASSROOM</span></div>
+ <div class="classroom-notice"><strong>Real classroom workspace:</strong> Accounts are verified by email. Classes, assignments and submissions are stored in Neon. Student scores are calculated by the database from the teacher's published checks; this is transparent phrase-based marking, not an AI examiner or full compiler.</div>
+ <div id="classAuthPanel" class="classroom-card cloud-auth">
+  <div class="cloud-auth-copy"><span class="unique-kicker">YOUR ETHAN CODE ACCOUNT</span><h3>Sign in or create your free account</h3><p>Use a valid email address. A verification code will be sent to your inbox when you register.</p></div>
+  <div class="cloud-auth-grid">
+   <label class="unique-label" for="cloudAuthName">Your name</label><input id="cloudAuthName" maxlength="100" autocomplete="name" placeholder="Your full name">
+   <label class="unique-label" for="cloudAuthEmail">Email address</label><input id="cloudAuthEmail" type="email" autocomplete="email" placeholder="you@example.com">
+   <label class="unique-label" for="cloudAuthPassword">Password</label><input id="cloudAuthPassword" type="password" minlength="8" autocomplete="current-password" placeholder="At least 8 characters">
   </div>
+  <div class="cloud-auth-actions"><button class="primary" id="cloudSignIn" type="button">Sign in</button><button class="secondary" id="cloudSignUp" type="button">Create account</button></div>
+  <div id="cloudOtpPanel" hidden><label class="unique-label" for="cloudOtp">Email verification code</label><input id="cloudOtp" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="Enter the code from your email"><button class="primary" id="cloudVerifyOtp" type="button">Verify email</button></div>
+  <p id="cloudAuthFeedback" class="classroom-feedback" role="status" aria-live="polite"></p>
  </div>
- <div class="classroom-panel" data-classroom-panel="student" hidden>
-  <div class="classroom-columns">
+ <div id="classCloudApp" hidden>
+  <div class="classroom-card cloud-account-bar"><div><span class="unique-kicker">SIGNED IN</span><strong id="cloudUserLabel"></strong><small id="cloudUserEmail"></small></div><button class="secondary" id="cloudSignOut" type="button">Sign out</button></div>
+  <div class="classroom-columns cloud-actions-grid">
    <div class="classroom-card">
-    <span class="unique-kicker">STUDENT SUBMISSION</span><h3>Complete your assignment</h3>
-    <label class="unique-label" for="classStudentName">Your display name</label><input id="classStudentName" maxlength="50" placeholder="e.g. Student 01">
-    <label class="unique-label" for="classChooseAssignment">Choose an assignment</label><select id="classChooseAssignment"></select>
-    <div id="classStudentBrief" class="student-assignment-brief">Choose an assignment to see its instructions.</div>
-    <label class="unique-label" for="classStudentCode">Paste your code or written solution</label><textarea id="classStudentCode" rows="12" spellcheck="false" placeholder="Write or paste your solution here..."></textarea>
-    <button type="button" class="primary" id="classSubmitWork">Submit and check my work</button>
-    <div id="classGradeResult" class="class-grade-result" role="status" aria-live="polite">Your score and feedback will appear here.</div>
+    <span class="unique-kicker">TEACHER DESK</span><h3>Create your classroom</h3>
+    <label class="unique-label" for="cloudClassName">Class name</label><input id="cloudClassName" maxlength="120" placeholder="e.g. Ethan Code Saturday Class">
+    <button class="primary" id="cloudCreateClass" type="button">Create classroom</button>
+    <div id="cloudCreatedCode" class="student-assignment-brief" aria-live="polite">Your new class invitation code will appear here.</div>
    </div>
-   <div class="classroom-card"><span class="unique-kicker">MY SUBMISSION HISTORY</span><h3>My recent work</h3><div id="classStudentHistory" class="class-assignment-list"></div></div>
+   <div class="classroom-card">
+    <span class="unique-kicker">STUDENT DESK</span><h3>Join a classroom</h3>
+    <label class="unique-label" for="cloudJoinCode">Class invitation code</label><input id="cloudJoinCode" maxlength="12" autocapitalize="characters" placeholder="Enter code from your teacher">
+    <label class="unique-label" for="cloudDisplayName">Name shown to your teacher</label><input id="cloudDisplayName" maxlength="100" placeholder="Your name">
+    <button class="primary" id="cloudJoinClass" type="button">Join classroom</button>
+   </div>
   </div>
- </div>
- <div class="classroom-panel" data-classroom-panel="reports" hidden>
-  <div class="classroom-card">
-   <div class="report-top"><div><span class="unique-kicker">TEACHER OVERVIEW</span><h3>Class performance</h3><p class="classroom-help">Submissions saved in this browser. Scores are based on assignment phrase checks.</p></div><button type="button" class="secondary" id="classExportReport">Export report CSV</button></div>
-   <div class="classroom-metrics"><div><strong id="classMetricAssignments">0</strong><span>Assignments</span></div><div><strong id="classMetricSubmissions">0</strong><span>Submissions</span></div><div><strong id="classMetricAverage">—</strong><span>Average score</span></div><div><strong id="classMetricPass">0</strong><span>100% checks met</span></div></div>
-   <div class="class-report-table-wrap"><table class="class-report-table"><thead><tr><th>Student</th><th>Assignment</th><th>Score</th><th>Feedback</th><th>Date</th></tr></thead><tbody id="classReportRows"><tr><td colspan="5">No submissions yet.</td></tr></tbody></table></div>
+  <div class="classroom-card cloud-class-list"><span class="unique-kicker">YOUR ONLINE CLASSES</span><h3>Choose a classroom</h3><div id="cloudClasses" class="class-assignment-list"><p class="classroom-empty">Loading your classrooms…</p></div></div>
+  <div id="cloudSelectedClass" class="classroom-card" hidden>
+   <div class="report-top"><div><span class="unique-kicker">CLASS WORKSPACE</span><h3 id="cloudSelectedClassName">Selected classroom</h3><p id="cloudClassRole" class="classroom-help"></p></div><span id="cloudSelectedCode" class="class-level"></span></div>
+   <div id="cloudTeacherTools" hidden>
+    <h4>Publish a coding assignment</h4>
+    <label class="unique-label" for="cloudAssignmentTitle">Assignment title</label><input id="cloudAssignmentTitle" maxlength="160" placeholder="Build a personal profile card">
+    <div class="cloud-form-two"><div><label class="unique-label" for="cloudAssignmentLevel">Level</label><select id="cloudAssignmentLevel"><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>All levels</option></select></div><div><label class="unique-label" for="cloudAssignmentLanguage">Language</label><select id="cloudAssignmentLanguage"><option>HTML</option><option>CSS</option><option>JavaScript</option><option>Blockly / JavaScript</option><option>Python (conceptual)</option></select></div></div>
+    <label class="unique-label" for="cloudAssignmentInstructions">Instructions</label><textarea id="cloudAssignmentInstructions" rows="4" maxlength="10000" placeholder="Explain what students must build, how it should work and what to submit."></textarea>
+    <label class="unique-label" for="cloudAssignmentChecks">Automatic marking checks (comma-separated phrases)</label><input id="cloudAssignmentChecks" maxlength="1000" placeholder="h1, profile, background-color">
+    <button class="primary" id="cloudPublishAssignment" type="button">Publish to this class</button><p id="cloudTeacherFeedback" class="classroom-feedback" role="status" aria-live="polite"></p>
+    <h4>Class performance report</h4><button class="secondary" id="cloudExportReport" type="button">Export class report CSV</button><div class="class-report-table-wrap"><table class="class-report-table"><thead><tr><th>Student</th><th>Assignment</th><th>Score</th><th>Feedback</th><th>Date</th></tr></thead><tbody id="cloudReportRows"><tr><td colspan="5">No submissions yet.</td></tr></tbody></table></div>
+   </div>
+   <div><h4>Class assignments</h4><div id="cloudAssignments" class="class-assignment-list"><p class="classroom-empty">Select a class to load assignments.</p></div></div>
+   <div id="cloudStudentTools" hidden><h4>Submit your work</h4><label class="unique-label" for="cloudSubmissionAssignment">Choose assignment</label><select id="cloudSubmissionAssignment"></select><label class="unique-label" for="cloudStudentSolution">Your code or written solution</label><textarea id="cloudStudentSolution" rows="12" maxlength="50000" spellcheck="false" placeholder="Paste your completed work here…"></textarea><button class="primary" id="cloudSubmitWork" type="button">Submit assignment</button><p id="cloudStudentFeedback" class="classroom-feedback" role="status" aria-live="polite"></p><h4>My submissions</h4><div id="cloudStudentHistory" class="class-assignment-list"></div></div>
   </div>
  </div>
 </section>
@@ -248,4 +249,4 @@
 
 <div class="modal hidden" id="progressModal"><div class="modalbox"><button class="x" id="closeProgress">×</button><span class="tag">MY PROGRESS</span><h2>Look how far you have come!</h2><div class="stars" id="starCount">⭐ 0 learning stars</div><div class="progressline"><i id="progressBar"></i></div><p id="progressText"></p><div id="badges" class="badges"></div><div class="progressactions"><button class="secondary" id="continueProgress">Continue Learning</button><button class="danger-lite" id="resetProgress">Reset My Progress</button></div></div></div>
 <footer><b>ETHAN CODE</b><span>Learn • Try • Build • Grow</span><small>Powered by Ethan Digital Academy</small></footer>
-<script src="assets/extra-courses.js"></script><script src="assets/app.js"></script><script src="assets/studio.js"></script><script src="assets/challenges.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/blockly_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/blocks_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/javascript_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/msg/en.js"></script><script src="assets/blockly-lab.js"></script><script src="assets/pwa.js"></script><script src="assets/ethan-workshop.js"></script><script src="assets/ethan-classroom.js"></script></body></html>
+<script src="assets/extra-courses.js"></script><script src="assets/app.js"></script><script src="assets/studio.js"></script><script src="assets/challenges.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/blockly_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/blocks_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/javascript_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/msg/en.js"></script><script src="assets/blockly-lab.js"></script><script src="assets/pwa.js"></script><script src="assets/ethan-workshop.js"></script><script type="module" src="assets/ethan-classroom-cloud.js"></script></body></html>
