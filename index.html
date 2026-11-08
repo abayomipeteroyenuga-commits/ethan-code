@@ -134,7 +134,48 @@
 <section class="section studio-section" id="codeStudio">
  <div class="studio-heading"><div><span class="tag">ETHAN CODE · LIVE CODE STUDIO</span><h2>Write code. Run it. Show my page.</h2><p class="lead">Create a complete webpage using HTML, CSS and JavaScript. Select a language, edit the example, and run your code. Your page appears immediately beneath the editor.</p></div><span class="studio-status" id="studioStatus" role="status" aria-live="polite">Ready to build</span></div>
  <div class="studio-shell"><div class="studio-toolbar"><div class="studio-tabs" role="tablist" aria-label="Code language"><button type="button" class="studio-tab active" data-studio-tab="html" aria-selected="true">HTML</button><button type="button" class="studio-tab" data-studio-tab="css" aria-selected="false">CSS</button><button type="button" class="studio-tab" data-studio-tab="js" aria-selected="false">JavaScript</button></div><span>Changes are saved on this device</span></div>
- <div class="studio-editors"><label class="studio-panel active" data-studio-panel="html" for="studioHtml">HTML · Page structure<textarea id="studioHtml" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="HTML code editor"><main class="welcome"><h1>My Ethan Code Page 🚀</h1><p>I built this page with HTML, CSS and JavaScript.</p><button id="helloButton">Click me!</button><p id="message">Try the button above.</p></main></textarea></label><label class="studio-panel" data-studio-panel="css" for="studioCss">CSS · Page design<textarea id="studioCss" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="CSS code editor">body { font-family: system-ui, sans-serif; background: #eef5ff; color: #172b52; padding: 32px; } .welcome { max-width: 650px; margin: auto; padding: 30px; background: white; border-radius: 22px; box-shadow: 0 12px 36px #142b5220; } button { background: #245de8; color: white; border: 0; border-radius: 12px; padding: 12px 20px; cursor: pointer; }</textarea></label><label class="studio-panel" data-studio-panel="js" for="studioJs">JavaScript · Page interactions<textarea id="studioJs" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="JavaScript code editor">document.getElementById('helloButton').addEventListener('click', function () { document.getElementById('message').textContent = 'Amazing! Your JavaScript works 🎉'; });</textarea></label></div>
+ <div class="studio-editors"><label class="studio-panel active" data-studio-panel="html" for="studioHtml">HTML · Page structure<textarea id="studioHtml" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="HTML code editor"><main class="welcome"><h1>My Ethan Code Page 🚀</h1><p>I built this page with HTML, CSS and JavaScript.</p><button id="helloButton">Click me!</button><p id="message">Try the button above.</p>
+<section class="section ethan-unique" id="ethanWorkshop">
+ <div class="unique-heading"><div><span class="tag">ETHAN CODE · SIGNATURE WORKSHOP</span><h2>Think like a developer. Build like a creator.</h2><p class="lead">Three practical tools that turn lessons into real coding confidence. Your work is saved in this browser, without requiring an account.</p></div><span class="unique-local">🔒 Saved on this device</span></div>
+ <div class="unique-grid">
+  <article class="unique-card">
+   <div class="unique-icon">🕵️</div><span class="unique-kicker">DEBUGGING GYM</span><h3>Code Detective</h3><p>Inspect a broken program, identify the bug and learn why the fix works. Build the habit of reading code carefully.</p>
+   <div class="detective-meta"><span id="detectiveLevel">CASE 1 OF 4</span><span id="detectiveScore">0 solved</span></div>
+   <h4 id="detectiveTitle">The missing message</h4><p id="detectivePrompt" class="detective-prompt"></p>
+   <pre id="detectiveCode" class="detective-code"></pre>
+   <div id="detectiveChoices" class="detective-choices"></div>
+   <div id="detectiveFeedback" class="detective-feedback" role="status" aria-live="polite">Choose the line that contains the bug.</div>
+   <button class="secondary" id="detectiveNext" type="button">Next case →</button>
+  </article>
+  <article class="unique-card">
+   <div class="unique-icon">🧭</div><span class="unique-kicker">PROJECT PLANNER</span><h3>Build an Idea Blueprint</h3><p>Turn an idea into a realistic mini-project with features, tools, steps and a completion checklist.</p>
+   <label class="unique-label" for="blueprintType">What do you want to build?</label>
+   <select id="blueprintType"><option value="website">A website</option><option value="game">A simple game</option><option value="app">A mobile app idea</option><option value="robot">A robotics project</option><option value="data">A data dashboard</option></select>
+   <label class="unique-label" for="blueprintIdea">Give your project a name</label>
+   <input id="blueprintIdea" maxlength="70" placeholder="e.g. My School Study Helper">
+   <label class="unique-label" for="blueprintAudience">Who will use it?</label>
+   <input id="blueprintAudience" maxlength="70" placeholder="e.g. students in my class">
+   <button class="primary" id="makeBlueprint" type="button">Create my blueprint</button>
+   <div id="blueprintOutput" class="blueprint-output" aria-live="polite">Your project plan will appear here. Start with a small idea and improve it step by step.</div>
+   <button class="secondary" id="downloadBlueprint" type="button" disabled>Download project plan</button>
+  </article>
+  <article class="unique-card">
+   <div class="unique-icon">🏅</div><span class="unique-kicker">CREATOR PORTFOLIO</span><h3>My Project Showcase</h3><p>Record the projects you have made, add a working link and build a portfolio you can share with a teacher.</p>
+   <label class="unique-label" for="portfolioName">Project name</label>
+   <input id="portfolioName" maxlength="70" placeholder="e.g. My first website">
+   <label class="unique-label" for="portfolioDescription">What did you create or learn?</label>
+   <textarea id="portfolioDescription" rows="3" maxlength="240" placeholder="Describe what your project does..."></textarea>
+   <label class="unique-label" for="portfolioLink">Project link (optional)</label>
+   <input id="portfolioLink" type="url" maxlength="300" placeholder="https://...">
+   <button class="primary" id="savePortfolio" type="button">Add to my showcase</button>
+   <div class="portfolio-list" id="portfolioList" aria-live="polite"></div>
+   <button class="secondary" id="exportPortfolio" type="button">Export my portfolio</button>
+  </article>
+ </div>
+ <p class="unique-footnote">Privacy note: these workshop tools store progress and portfolio entries in this browser only. They do not upload student work to a server or provide cloud sync. Do not add private personal information.</p>
+</section>
+
+</main></textarea></label><label class="studio-panel" data-studio-panel="css" for="studioCss">CSS · Page design<textarea id="studioCss" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="CSS code editor">body { font-family: system-ui, sans-serif; background: #eef5ff; color: #172b52; padding: 32px; } .welcome { max-width: 650px; margin: auto; padding: 30px; background: white; border-radius: 22px; box-shadow: 0 12px 36px #142b5220; } button { background: #245de8; color: white; border: 0; border-radius: 12px; padding: 12px 20px; cursor: pointer; }</textarea></label><label class="studio-panel" data-studio-panel="js" for="studioJs">JavaScript · Page interactions<textarea id="studioJs" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="JavaScript code editor">document.getElementById('helloButton').addEventListener('click', function () { document.getElementById('message').textContent = 'Amazing! Your JavaScript works 🎉'; });</textarea></label></div>
  <div class="studio-actions"><button type="button" class="primary" id="studioRun">▶ Run Code</button><button type="button" class="secondary" id="studioShow">Show My Page ↓</button><button type="button" class="secondary" id="studioDownload">⬇ Download My Page (.html)</button><button type="button" class="secondary" id="studioReset">Reset Example</button></div>
  <div class="studio-output" id="studioOutput"><div class="studio-output-top"><div><strong>Show My Page</strong><small>Your live result appears below. Click buttons in your page to test them.</small></div><button type="button" class="secondary" id="studioRefresh">↻ Refresh page</button></div><iframe id="studioFrame" title="My HTML CSS and JavaScript page" sandbox="allow-scripts allow-modals" referrerpolicy="no-referrer"></iframe></div></div>
  <p class="studio-note">This studio runs HTML, CSS and browser JavaScript. Java is a different language and requires a separate Java runtime; it cannot run in this webpage editor. Downloaded pages can be opened in your browser.</p>
@@ -160,4 +201,4 @@
 
 <div class="modal hidden" id="progressModal"><div class="modalbox"><button class="x" id="closeProgress">×</button><span class="tag">MY PROGRESS</span><h2>Look how far you have come!</h2><div class="stars" id="starCount">⭐ 0 learning stars</div><div class="progressline"><i id="progressBar"></i></div><p id="progressText"></p><div id="badges" class="badges"></div><div class="progressactions"><button class="secondary" id="continueProgress">Continue Learning</button><button class="danger-lite" id="resetProgress">Reset My Progress</button></div></div></div>
 <footer><b>ETHAN CODE</b><span>Learn • Try • Build • Grow</span><small>Powered by Ethan Digital Academy</small></footer>
-<script src="assets/extra-courses.js"></script><script src="assets/app.js"></script><script src="assets/studio.js"></script><script src="assets/challenges.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/blockly_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/blocks_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/javascript_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/msg/en.js"></script><script src="assets/blockly-lab.js"></script><script src="assets/pwa.js"></script></body></html>
+<script src="assets/extra-courses.js"></script><script src="assets/app.js"></script><script src="assets/studio.js"></script><script src="assets/challenges.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/blockly_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/blocks_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/javascript_compressed.js"></script><script crossorigin="anonymous" src="https://unpkg.com/blockly@13.4.0/msg/en.js"></script><script src="assets/blockly-lab.js"></script><script src="assets/pwa.js"></script><script src="assets/ethan-workshop.js"></script></body></html>
