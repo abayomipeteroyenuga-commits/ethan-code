@@ -52,7 +52,7 @@ function setSignedIn(user){
 }
 function setSignedOut(){
   currentUser=null; selectedClass=null; $("classAuthPanel").hidden=false; $("classCloudApp").hidden=true;
-  $("classSelectedClass")?.setAttribute("hidden","");
+  $("cloudSelectedClass")?.setAttribute("hidden","");
 }
 function showAuthError(error){feedback("cloudAuthFeedback",errorText(error),"error")}
 async function signUp(){
