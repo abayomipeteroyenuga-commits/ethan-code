@@ -55,3 +55,30 @@
 .unique-footnote{margin-top:18px;color:#65748c;font-size:12px;line-height:1.65}
 @media(max-width:1000px){.unique-grid{grid-template-columns:1fr 1fr}.unique-card:last-child{grid-column:1/-1}}
 @media(max-width:650px){.unique-grid{grid-template-columns:1fr}.unique-card:last-child{grid-column:auto}.unique-card{padding:17px}}
+
+/* Ethan Code classroom workspace */
+.ethan-classroom{background:linear-gradient(145deg,#eef4ff,#fff 68%);border:1px solid #e0e9f7;border-radius:26px}
+.classroom-head{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.classroom-local{padding:9px 13px;border-radius:99px;background:#fff2d9;color:#80520a;font-size:10px;font-weight:900;letter-spacing:.08em}
+.classroom-notice{margin:20px 0;padding:15px 17px;border:1px solid #ead8a8;border-radius:12px;background:#fff9e9;color:#71541d;font-size:12px;line-height:1.65}
+.classroom-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}
+.classroom-tabs button{border:1px solid #d8e2f1;border-radius:11px;background:#fff;color:#40516e;padding:12px 17px;font-size:13px;font-weight:850;cursor:pointer}
+.classroom-tabs button.active{background:#14264b;border-color:#14264b;color:#fff}
+.classroom-panel[hidden]{display:none!important}.classroom-columns{display:grid;grid-template-columns:1fr 1fr;gap:17px;align-items:start}
+.classroom-card{min-width:0;padding:22px;border:1px solid #dce5f4;border-radius:18px;background:#fff;box-shadow:0 12px 30px #1b37600a}
+.classroom-card h3{font-size:22px;margin:8px 0 17px}.classroom-card input,.classroom-card select,.classroom-card textarea{box-sizing:border-box;width:100%;border:1px solid #d5dfed;border-radius:10px;padding:12px;background:#fff;color:#172b4d;font:inherit;font-size:13px}
+.classroom-card textarea{resize:vertical;line-height:1.6}.classroom-card .primary{margin-top:14px}
+.classroom-help{font-size:11px;color:#71809a;line-height:1.6}.classroom-feedback{min-height:18px;font-size:12px;line-height:1.6;color:#526783}.classroom-feedback.success{color:#17613b}.classroom-feedback.error{color:#a13a2d}
+.class-assignment-list{display:grid;gap:10px}.class-assignment-card{padding:14px;border:1px solid #e0e8f3;border-radius:12px;background:#fbfcff}
+.class-assignment-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.class-assignment-head strong{font-size:14px;color:#1a2c4b}.class-level{flex:none;padding:5px 8px;border-radius:99px;background:#edf3ff;color:#2855ec;font-size:10px;font-weight:850}
+.class-assignment-card p{font-size:12px;line-height:1.55;color:#63728a}.class-assignment-description{white-space:pre-wrap}.class-remove{border:0;background:#fff0ed;color:#9c3c2e;border-radius:8px;padding:7px 10px;font-size:10px;font-weight:800;cursor:pointer}
+.classroom-empty{padding:16px;border-radius:11px;background:#f6f8fc;color:#77849a;font-size:12px;line-height:1.6}
+.student-assignment-brief{white-space:pre-wrap;margin:13px 0;padding:14px;border-radius:11px;background:#f1f5ff;color:#435674;font-size:12px;line-height:1.65}
+.class-grade-result{margin-top:14px;padding:15px;border:1px solid #dce5f4;border-radius:12px;background:#f6f8fc;color:#4d607d;font-size:12px;line-height:1.65}
+.class-grade-result.grade-perfect{border-color:#b8e5c8;background:#edfaf1;color:#185b35}.grade-score{display:block;font-size:18px;color:#1d3e75}.grade-missing{color:#9b4b17}
+.report-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.report-top h3{margin-bottom:5px}.report-top .classroom-help{max-width:540px}
+.classroom-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:22px 0}
+.classroom-metrics>div{padding:16px;border-radius:12px;background:#f1f5ff}.classroom-metrics strong{display:block;font-size:25px;color:#2855ec}.classroom-metrics span{font-size:11px;color:#64738b}
+.class-report-table-wrap{overflow-x:auto}.class-report-table{width:100%;border-collapse:collapse;font-size:12px}.class-report-table th,.class-report-table td{padding:12px;text-align:left;border-bottom:1px solid #e7edf5;white-space:nowrap}.class-report-table th{background:#f7f9fd;color:#40516d;font-size:11px}
+@media(max-width:800px){.classroom-columns{grid-template-columns:1fr}.classroom-metrics{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.classroom-card{padding:16px}.classroom-tabs button{flex:1 1 100%}.report-top .secondary{width:100%;text-align:center}}
