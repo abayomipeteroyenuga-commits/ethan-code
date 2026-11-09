@@ -216,3 +216,6 @@ body[data-page="home"] main>#pathfinder{background:#f7faff}
 .chip-one{top:15px;right:16px}.chip-two{bottom:22px;left:15px}.chip-three{right:16px;bottom:22px}
 .code-brackets{position:absolute;top:50%;right:15px;transform:translateY(-50%);font:900 42px/1 ui-monospace,monospace;color:#6de4ff;text-shadow:0 0 22px #00bfff;opacity:.9}
 @media(max-width:600px){.code-chip{font-size:8px;padding:7px 9px}.code-brackets{font-size:30px;right:10px}}
+
+/* Homepage photo: keep the photograph clean, without text badges or floating labels. */
+.home-welcome .digital-code-overlay,.home-welcome .visual-float{display:none!important}
